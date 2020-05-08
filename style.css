@@ -1,0 +1,62 @@
+html { 
+    background: url(images/Aesthetic-Pixel-Art-Best-HD-Wallpaper-49275.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+h3{
+    font-size: 30px;
+}
+
+h1 {
+    font-size: 50px;
+    background-color: rgba(255, 255, 255, 0.267);
+    width: 740px;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+}
+
+.grid {
+    height: 720px;
+    width: 720px;
+    border: solid 20px rgba(255, 255, 255, 0.267);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.grid div {
+    height: 88px;
+    width: 88px;
+    border-radius: 10px;
+    border: solid rgba(255, 255, 255, 0.267) 1px;
+}
+
+.grid img {
+    height: 88px;
+    width: 88px;
+    border: solid rgba(0, 0, 0, 0.144) 1px;
+}
+
+.score-board {
+    border: solid 20px rgba(255, 255, 255, 0.267);
+    border-radius: 10px;
+    width: 200px;
+    color: white;
+    text-align: center;
+    justify-content: left;
+}
