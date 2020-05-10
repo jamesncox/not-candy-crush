@@ -15,16 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'darkturqouise'
     ]
 
-    // Create MLP Images
-    // const ponyImages = [
-    //     "images/applejack 88x88.jpg",
-    //     "images/fluttershy 88x88.jpg",
-    //     "images/pinkie pie 88x88.jpg",
-    //     "images/rainbow dash 88x88.jpg",
-    //     "images/rarity 88x88.jpg",
-    //     "images/twilight sparkle 88x88.jpg"
-    // ]
-
     // Create Board
     function createBoard() {
         for (let i = 0; i < width * width; i++) {
@@ -40,31 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     createBoard()
 
-    // function createBoard() {
-    //     for (let i = 0; i < width * width; i++) {
-    //         const square = document.createElement('img')
-    //         square.setAttribute('draggable', true)
-    //         square.setAttribute('id', i)
-
-    //         let randomPony = Math.floor(Math.random() * ponyImages.length)
-    //         square.src = ponyImages[randomPony]
-    //         grid.appendChild(square)
-    //         squares.push(square)
-    //     }
-    // }
-    // createBoard()
-
     // Drag the candies
 
     let colorBeingDragged
     let colorBeingReplaced
     let squareIdBeingDragged
     let squareIdBeingReplaced
-
-    // let ponyBeingDragged
-    // let ponyBeingReplaced
-    // let squareIdBeingDragged
-    // let squareIdBeingReplaced
 
     squares.forEach(square => square.addEventListener('dragstart', dragStart))
     squares.forEach(square => square.addEventListener('dragover', dragOver))
@@ -138,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Checking for matches
     // check for row of Three
     function checkRowForThree() {
         for (i = 0; i < 61; i++) {
@@ -201,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // check for column of Four
     function checkColumnForFour() {
-        for (i = 0; i < 47; i++) {
+        for (i = 0; i < 39; i++) {
             let columnOfFour = [i, i + width, i + width * 2, i + width * 3]
             let decidedColor = squares[i].style.backgroundColor
             const isBlank = squares[i].style.backgroundColor === ''
