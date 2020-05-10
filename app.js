@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     squares.forEach(square => square.addEventListener('drop', dragDrop))
 
     function dragStart() {
-        console.log(this.id)
         colorBeingDragged = this.style.backgroundColor
         squareIdBeingDragged = parseInt(this.id)
     }
