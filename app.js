@@ -12,8 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
         'dodgerblue',
         'rgb(105, 0, 131)',
         'chartreuse',
-        'darkturqouise'
+        'rgb(0, 253, 219)'
     ]
+
+    // const candyColors = [
+    //     'red',
+    //     'orange',
+    //     'yellow',
+    //     'green',
+    //     'blue',
+    //     'purple'
+    // ]
 
     // Create Board
     function createBoard() {
@@ -60,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function dragLeave(e) {
-        e.preventDefault()
+        // e.preventDefault()
         // console.log(this.id, 'dragleave')
     }
 
@@ -93,10 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    //drop ponies once some have been cleared
+    //drop colors once some have been cleared
     function moveDown() {
-        for (i = 0; i < 55; i++) {
-            if (squares[i + width].style.backgroundColor === "") {
+        for (i = 0; i <= 55; i++) {
+            if (squares[i + width].style.backgroundColor === '') {
                 squares[i + width].style.backgroundColor = squares[i].style.backgroundColor
                 squares[i].style.backgroundColor = ''
                 const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
@@ -109,9 +118,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function fillFirstRow() {
+        for (i = 0; i <= 7; i++) {
+            if (squares[i].style.backgroundColor === '') {
+                let randomColor = Math.floor(Math.random() * candyColors.length)
+                squares[i].style.backgroundColor = candyColors[randomColor]
+            }
+        }
+    }
+
     // check for row of Three
     function checkRowForThree() {
-        for (i = 0; i < 61; i++) {
+        for (i = 0; i <= 61; i++) {
             let rowOfThree = [i, i + 1, i + 2]
             let decidedColor = squares[i].style.backgroundColor
             const isBlank = squares[i].style.backgroundColor === ''
@@ -131,8 +149,8 @@ document.addEventListener('DOMContentLoaded', () => {
     checkRowForThree()
 
     // check for column of Three
-    function checkColumnForthree() {
-        for (i = 0; i < 47; i++) {
+    function checkColumnForThree() {
+        for (i = 0; i <= 47; i++) {
             let columnOfThree = [i, i + width, i + width * 2]
             let decidedColor = squares[i].style.backgroundColor
             const isBlank = squares[i].style.backgroundColor === ''
@@ -146,11 +164,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    checkColumnForthree()
+    checkColumnForThree()
 
     // check for row of Four
     function checkRowForFour() {
-        for (i = 0; i < 60; i++) {
+        for (i = 0; i <= 60; i++) {
             let rowOfFour = [i, i + 1, i + 2, i + 3]
             let decidedColor = squares[i].style.backgroundColor
             const isBlank = squares[i].style.backgroundColor === ''
@@ -171,8 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // check for column of Four
     function checkColumnForFour() {
-        for (i = 0; i < 39; i++) {
-            let columnOfFour = [i, i + width, i + width * 2, i + width * 3]
+        for (i = 0; i <= 39; i++) {
+            let columnOfFour = [i, i + width, i + (width * 2), i + (width * 3)]
             let decidedColor = squares[i].style.backgroundColor
             const isBlank = squares[i].style.backgroundColor === ''
 
@@ -189,10 +207,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.setInterval(function () {
         moveDown()
+        fillFirstRow()
         checkRowForFour()
         checkColumnForFour()
         checkRowForThree()
-        checkColumnForthree()
+        checkColumnForThree()
     }, 100)
 
 
