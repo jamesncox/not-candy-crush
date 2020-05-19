@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'dodgerblue',
         'rgb(105, 0, 131)',
         'chartreuse',
-        'rgb(0, 253, 219)'
+        'rgb(83, 255, 232)'
     ]
 
     // const candyColors = [
@@ -108,12 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (squares[i + width].style.backgroundColor === '') {
                 squares[i + width].style.backgroundColor = squares[i].style.backgroundColor
                 squares[i].style.backgroundColor = ''
-                const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
-                const isFirstRow = firstRow.includes(i)
-                if (isFirstRow && squares[i].style.backgroundColor === '') {
-                    let randomColor = Math.floor(Math.random() * candyColors.length)
-                    squares[i].style.backgroundColor = candyColors[randomColor]
-                }
+                // const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
+                // const isFirstRow = firstRow.includes(i)
+                // if (isFirstRow && squares[i].style.backgroundColor === '') {
+                //     let randomColor = Math.floor(Math.random() * candyColors.length)
+                //     squares[i].style.backgroundColor = candyColors[randomColor]
+                // }
             }
         }
     }
@@ -205,9 +205,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     checkColumnForFour()
 
+    // check for row of Five
+    function checkRowForFive() {
+        for (i = 0; i <= 60; i++) {
+            let rowOfFive = [i, i + 1, i + 2, i + 3, i + 4]
+            let decidedColor = squares[i].style.backgroundColor
+            const isBlank = squares[i].style.backgroundColor === ''
+
+            const notValid = [4, 5, 6, 7, 12, 13, 14, 15, 20, 21, 22, 23, 28, 29, 30, 31, 36, 37, 38, 39, 44, 45, 46, 47, 52, 53, 54, 55]
+            if (notValid.includes(i)) continue
+
+            if (rowOfFive.every(index => squares[index].style.backgroundColor === decidedColor && !isBlank)) {
+                score += 5
+                scoreDisplay.innerHTML = score
+                rowOfFive.forEach(index => {
+                    squares[index].style.backgroundColor = ''
+                })
+            }
+        }
+    }
+    checkRowForFive()
+
+    // check for column of Five
+    function checkColumnForFive() {
+        for (i = 0; i <= 31; i++) {
+            let columnOfFive = [i, i + width, i + (width * 2), i + (width * 3), i + (width * 4)]
+            let decidedColor = squares[i].style.backgroundColor
+            const isBlank = squares[i].style.backgroundColor === ''
+
+            if (columnOfFive.every(index => squares[index].style.backgroundColor === decidedColor && !isBlank)) {
+                score += 5
+                scoreDisplay.innerHTML = score
+                columnOfFive.forEach(index => {
+                    squares[index].style.backgroundColor = ''
+                })
+            }
+        }
+    }
+    checkColumnForFive()
+
     window.setInterval(function () {
         moveDown()
         fillFirstRow()
+        checkRowForFive()
+        checkColumnForFive()
         checkRowForFour()
         checkColumnForFour()
         checkRowForThree()
